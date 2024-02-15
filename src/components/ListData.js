@@ -16,7 +16,7 @@ export default function ListData() {
 		let url = `${process.env.NEXT_PUBLIC_API_URI}/list?page=${currentPage}&limit=${limit}&title=${searchTitle}`;
 		if (searchDate) {
 			console.log("searchDate", searchDate);
-			url += `&date=${searchDate}`;
+			url += `&date=${new Date(searchDate).toLocaleDateString("en-US")}`;
 		}
 		const res = await axios.get(url);
 		console.log("res", res.data.list);
@@ -72,6 +72,7 @@ export default function ListData() {
 							return;
 						}}
 						placeholder='Filter with date'
+						disabled
 					/>
 				</div>
 			</div>
